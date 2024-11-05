@@ -1,0 +1,80 @@
+#include <stdio.h>
+
+void tictactoeBoard();
+int checkWin();
+void system();
+
+char board[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+
+int main() {
+    int player = 1, input, status = -1;
+    tictactoeBoard();
+
+    while (status == -1) {
+        player = (player % 2 == 0) ? 2 : 1;
+        char mark = (player == 1) ? 'X' : 'O';
+        printf("Enter the number to be marked for Player %d: ", player);
+        scanf("%d", &input);
+
+        // Check for invalid input or already marked position
+        if (input < 1 || input > 9 || board[input] == 'X' || board[input] == 'O') {
+            printf("Invalid input. Please try again.\n");
+            continue;
+        }
+
+        // Mark the board
+        board[input] = mark;
+        tictactoeBoard();
+
+        // Check for win or draw
+        int result = checkWin();
+        if (result == 1) {
+            printf("Player %d is the winner!\n", player);
+            break;
+        } else if (result == 0) {
+            printf("The match is a draw.\n");
+            break;
+        }
+
+        // Switch to the next player
+        player++;
+    }
+
+    return 0;
+}
+
+void tictactoeBoard() {
+    system("cls");
+    printf("\n      |   |      \n");
+    printf("   %c  | %c |  %c   \n", board[1], board[2], board[3]);
+    printf("______|___|______\n");
+    printf("      |   |      \n");
+    printf("   %c  | %c |  %c   \n", board[4], board[5], board[6]);
+    printf("______|___|______\n");
+    printf("      |   |      \n");
+    printf("   %c  | %c |  %c   \n", board[7], board[8], board[9]);
+    printf("      |   |      \n\n");
+}
+
+int checkWin() {
+    // Check rows, columns, and diagonals for a win
+    if (board[1] == board[2] && board[2] == board[3]) return 1;
+    if (board[4] == board[5] && board[5] == board[6]) return 1;
+    if (board[7] == board[8] && board[8] == board[9]) return 1;
+    if (board[1] == board[4] && board[4] == board[7]) return 1;
+    if (board[2] == board[5] && board[5] == board[8]) return 1;
+    if (board[3] == board[6] && board[6] == board[9]) return 1;
+    if (board[1] == board[5] && board[5] == board[9]) return 1;
+    if (board[3] == board[5] && board[5] == board[7]) return 1;
+
+    // Check for draw (all positions filled)
+    int count = 0;
+    for (int i = 1; i <= 9; i++) {
+        if (board[i] == 'X' || board[i] == 'O') {
+            count++;
+        }
+    }
+
+    if (count == 9) return 0; // Draw
+    return -1; // Game still ongoing
+}
