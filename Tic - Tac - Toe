@@ -45,6 +45,7 @@ int main() {
 
 void tictactoeBoard() {
     system("cls");
+    printf("=====LET'S BEGIN=====");
     printf("\n      |   |      \n");
     printf("   %c  | %c |  %c   \n", board[1], board[2], board[3]);
     printf("______|___|______\n");
