@@ -1,0 +1,5 @@
+1,Paneer Butter Masala,150
+2,Butter Naan,30
+3,Jeera Rice,70
+4,Dal Tadka,100
+5,Chicken Curry,200
