@@ -1,5 +1,0 @@
-1,Biryani,180
-2,Chole Bhature,120
-3,Garlic Naan,40
-4,Kadai Paneer,140
-5,Mutton Rogan Josh,250
